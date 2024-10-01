@@ -31,9 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <TextSpan>[
             TextSpan(
                 style: textStyle,
-                text: "Flutter is Google's UI toolkit for building beautiful, "
-                    'natively compiled applications for mobile, web, and desktop '
-                    'from a single codebase. Learn more about Flutter at '),
+                text: "A visualiser for Queensland bushfire data."),
             TextSpan(style: textStyle, text: '.'),
           ],
         ),
@@ -83,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   AboutListTile(
                     // icon: const Icon(Icons.info),
-                    applicationIcon: const FlutterLogo(), // TODO: Replace
+                    applicationIcon: Image(image: AssetImage('assets/icon/icon.png'), width: 60),
                     applicationName: 'Fire Map Qld',
                     applicationVersion: 'v1.0.0',
                     applicationLegalese: 'Licensed under GPLv3',

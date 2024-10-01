@@ -50,7 +50,7 @@ class DataSourcesPage extends StatelessWidget {
         ),
         Card(
           child: ExpansionTile(
-            title: const Text("Queensland Fire and Emergency Services"),
+            title: const Text("Queensland Fire Department"),
             subtitle: const Text("Active fire data | used under CC-BY-4.0"),
             children: [
               SizedBox(
@@ -60,7 +60,8 @@ class DataSourcesPage extends StatelessWidget {
                     text: TextSpan(
                       style: textStyle, 
                       text: "Current fire and controller burns information originates from "
-                            "Queensland Fire and Emergency Services, and is used under the "
+                            "Queensland Fire Department (formerly Queensland Fire and "
+                            "Emergency Services), and is used under the "
                             "Creative Commons Attribution 4.0 license. "
                             "More information is available on the ",
                       children: [
