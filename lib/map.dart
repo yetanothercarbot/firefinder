@@ -94,6 +94,28 @@ class FiresMap extends StatelessWidget {
                 },
                 hitValue: feature
               ));
+
+              if(feature['properties'].containsKey("Latitude")) {
+                points.add(Marker(
+                  point: LatLng(feature['properties']['Latitude'], feature['properties']['Longitude']),
+                  child: GestureDetector(
+                    child: switch (feature['properties']['WarningLevel']) {
+                      "Advice" || "Information" => Image(image: AssetImage("assets/fires/yellow.png")),
+                      "Watch and Act" => Image(image: AssetImage("assets/fires/orange.png")),
+                      "Emergency Warning" => Image(image: AssetImage("assets/fires/red.png"),),
+                      _ => Icon(Icons.local_fire_department, size: 30, color: Color.fromARGB(255, hazardOrange[0], hazardOrange[1], hazardOrange[2]),),
+                    },
+                    onTap: () {
+                      showDialog(
+                        context: context, 
+                        builder: (BuildContext context) {
+                          return FireInfoDialog(fireData: feature,);
+                        }
+                      );
+                    },
+                  ),
+                ));
+              }
             }
           }
         }
@@ -147,14 +169,7 @@ class FiresMap extends StatelessWidget {
                       emerZones.sort((a, b) => (calculatePolygonArea(a['geometry']['coordinates']) - calculatePolygonArea(b['geometry']['coordinates'])).round());
                       watchZones.sort((a, b) => (calculatePolygonArea(a['geometry']['coordinates']) - calculatePolygonArea(b['geometry']['coordinates'])).round());
                       adviceZones.sort((a, b) => (calculatePolygonArea(a['geometry']['coordinates']) - calculatePolygonArea(b['geometry']['coordinates'])).round());
-
-                      print(emerZones.length);
-                      print(watchZones.length);
-                      print(adviceZones.length);
-
                       var zones = [...emerZones, ...watchZones, ...adviceZones];
-
-                      print(zones.length);
 
                       return FireInfoDialog(fireData: zones.first);
 

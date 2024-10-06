@@ -1,4 +1,4 @@
-package com.example.firefinder
+package org.yetanothercarbot.firefinder
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,6 @@
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:firefinder/map.dart';
 import 'package:firefinder/attributions.dart';
@@ -23,6 +24,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final ThemeData theme = Theme.of(context);
     final TextStyle textStyle = theme.textTheme.bodyMedium!;
+
+    Future<PackageInfo> packageInfo = PackageInfo.fromPlatform();
 
     final List<Widget> aboutBoxChildren = <Widget>[
       const SizedBox(height: 24),
@@ -79,13 +82,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.pop(context);
                     },
                   ),
-                  AboutListTile(
-                    // icon: const Icon(Icons.info),
-                    applicationIcon: Image(image: AssetImage('assets/icon/icon.png'), width: 60),
-                    applicationName: 'Fire Map Qld',
-                    applicationVersion: 'v1.0.0',
-                    applicationLegalese: 'Licensed under GPLv3',
-                    aboutBoxChildren: aboutBoxChildren,
+                  FutureBuilder(
+                    future: packageInfo,
+                    builder: (context, snapshot) {
+                      if (snapshot.data != null) {
+                        return AboutListTile(
+                          // icon: const Icon(Icons.info),
+                          applicationIcon: Image(image: AssetImage('assets/icon/icon.png'), width: 60),
+                          applicationName: snapshot.data!.appName,
+                          applicationVersion: snapshot.data!.version,
+                          applicationLegalese: 'Licensed under GPLv3',
+                          aboutBoxChildren: aboutBoxChildren,
+                        );
+                      } else {
+                        return AboutListTile(
+                          applicationName: "Fire Map QLD",
+                          applicationLegalese: 'Licensed under GPLv3',
+                          aboutBoxChildren: aboutBoxChildren,
+                        );
+                      }
+                    }
                   ),
                 ],
               ),

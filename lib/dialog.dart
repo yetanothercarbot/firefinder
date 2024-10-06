@@ -26,31 +26,31 @@ class FireInfoDialog extends StatelessWidget {
               TableRow(
                 children: [
                   const TableCell(child: Text("Location")),
-                  TableCell(child: Text(fireData['properties']['Location'] ?? "-"))
+                  TableCell(child: Text("${fireData['properties']['Location'] ?? '-'}"))
                 ]
               ),
               TableRow(
                 children: [
                   const TableCell(child: Text("Status")),
-                  TableCell(child: Text(fireData['properties']['CurrentStatus'] ?? "-"))
+                  TableCell(child: Text("${fireData['properties']['CurrentStatus'] ?? '-'}"))
                 ]
               ),
               TableRow(
                 children: [
                   const TableCell(child: Text("Vehicles Assigned")),
-                  TableCell(child: Text(fireData['properties']['VehiclesAssigned'] ?? "-"))
+                  TableCell(child: Text("${fireData['properties']['VehiclesAssigned'] ?? '-'}"))
                 ]
               ),
               TableRow(
                 children: [
                   const TableCell(child: Text("Vehicles On Route")),
-                  TableCell(child: Text(fireData['properties']['VehiclesOnRoute'] ?? "-"))
+                  TableCell(child: Text("${fireData['properties']['VehiclesOnRoute'] ?? '-'}"))
                 ]
               ),
               TableRow(
                 children: [
                   const TableCell(child: Text("Vehicles On Scene")),
-                  TableCell(child: Text(fireData['properties']['VehiclesOnScene'] ?? "-"))
+                  TableCell(child: Text("${fireData['properties']['VehiclesOnScene'] ?? '-'}"))
                 ]
               ),
             ],
